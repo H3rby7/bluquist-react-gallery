@@ -2,8 +2,9 @@ import React, { Component, CSSProperties, ReactNode } from 'react';
 import './Gallery.css';
 
 import { GalleryItem, GalleryPropType, GalleryState } from './Gallery.types';
+import GalleryItemComponent from './item/GalleryItemComponent';
 
-export default class Gallery extends Component<GalleryPropType, GalleryState> {
+export default class GalleryComponent extends Component<GalleryPropType, GalleryState> {
 
     constructor(public props: GalleryPropType) {
         super(props);
@@ -14,7 +15,7 @@ export default class Gallery extends Component<GalleryPropType, GalleryState> {
     }
 
     render(): ReactNode {
-        const visibleItems = this.getDisplayedItems().map(this.renderOne);
+        const visibleItems = this.getDisplayedItems().map(item => <GalleryItemComponent {...item} />);
 
         return (
             <div className="gallery">
@@ -27,19 +28,6 @@ export default class Gallery extends Component<GalleryPropType, GalleryState> {
                 </div>
             </div>
         );
-    }
-
-    renderOne(item: GalleryItem, index: number): ReactNode {
-        const style: CSSProperties = {
-            backgroundImage: `url('${item.url}')`,
-        };
-        return (
-            <div
-                className="gallery-image"
-                style={style}
-                key={index}>{index}
-            </div>
-        )
     }
 
     getDisplayedItems(): GalleryItem[] {
@@ -69,6 +57,6 @@ export default class Gallery extends Component<GalleryPropType, GalleryState> {
         const maxValidPosition = this.state.length - this.props.itemsPerPage + 1;
         nextPosition = (nextPosition + maxValidPosition) % maxValidPosition;
         console.log(`Next position: ${nextPosition}`)
-        this.setState(Object.assign({}, this.state, {position: nextPosition}))
+        this.setState(Object.assign({}, this.state, { position: nextPosition }))
     }
 }

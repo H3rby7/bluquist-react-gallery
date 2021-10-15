@@ -1,12 +1,12 @@
-import Gallery from './Gallery';
 import { GalleryItem, GalleryPropType } from './Gallery.types';
+import GalleryComponent from './GalleryComponent';
 
 export default {
-    component: Gallery,
+    component: GalleryComponent,
     title: 'Gallery',
 };
 
-const Template = (args: GalleryPropType) => <Gallery {...args} />
+const Template = (args: GalleryPropType) => <GalleryComponent {...args} />
 
 export const Default = Template.bind({});
 Default.args = {
