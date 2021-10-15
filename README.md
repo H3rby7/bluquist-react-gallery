@@ -2,6 +2,10 @@
 
 https://solidifying-thoughts.notion.site/React-Developer-Gallery-Task-2-4-hours-75f5b64d9cb048f48a952abd8c9ce3c0
 
+## Run
+
+    npm run storybook
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

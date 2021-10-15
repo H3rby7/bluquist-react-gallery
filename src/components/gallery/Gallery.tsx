@@ -1,7 +1,6 @@
 import React, { Component, CSSProperties, ReactNode } from 'react';
 import './Gallery.css';
 
-import PropTypes from 'prop-types';
 import { GalleryItem, GalleryPropType, GalleryState } from './Gallery.types';
 
 export default class Gallery extends Component<GalleryPropType, GalleryState> {
@@ -13,11 +12,6 @@ export default class Gallery extends Component<GalleryPropType, GalleryState> {
             length: props.items ? props.items.length : 0,
         }
     }
-
-    propTypes = {
-        /** list of images to display */
-        imageUrls: PropTypes.arrayOf(PropTypes.string)
-    };
 
     render(): ReactNode {
         const visibleItems = this.getDisplayedItems().map(this.renderOne);
@@ -52,13 +46,6 @@ export default class Gallery extends Component<GalleryPropType, GalleryState> {
         return this.props.items.slice(position, lastItem < this.state.length ? lastItem : this.state.length);
     }
 
-    /**
-     * 
-     * Stubbed to '4' for the moment. 
-     * Could GET via props or internal screen size query
-     * 
-     * @returns the number of items to be displayed per page
-     */
     getItemsPerPage(): number {
         return this.props.itemsPerPage;
     }
