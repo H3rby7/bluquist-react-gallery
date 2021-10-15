@@ -7,7 +7,12 @@ export default {
     title: 'Gallery Item',
 };
 
-const Template = (args: GalleryItem) => <GalleryItemComponent {...args} />
+const Template = (args: GalleryItem) => {
+    return (<div style={{ height: '500px', width: '500px' }}>
+        <GalleryItemComponent {...args} />
+    </div >
+    )
+}
 
 export const Default = Template.bind({});
 Default.args = createImageGalleryItem(146083);

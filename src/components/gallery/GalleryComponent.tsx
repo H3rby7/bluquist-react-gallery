@@ -1,4 +1,4 @@
-import React, { Component, CSSProperties, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
 import './Gallery.css';
 
 import { GalleryItem, GalleryPropType, GalleryState } from './Gallery.types';
