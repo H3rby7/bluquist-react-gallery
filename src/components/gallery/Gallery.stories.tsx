@@ -6,9 +6,7 @@ export default {
     title: 'Gallery',
 };
 
-const Template = (args: GalleryPropType) => {
-    return new Gallery(args).render();
-};
+const Template = (args: GalleryPropType) => <Gallery {...args} />
 
 export const Default = Template.bind({});
 Default.args = {

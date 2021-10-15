@@ -18,7 +18,13 @@ export default class Gallery extends Component<GalleryPropType, GalleryState> {
 
         return (
             <div className="gallery">
-                {visibleItems}
+                <div className="content">
+                    {visibleItems}
+                </div>
+                <div className="controls">
+                    <button onClick={() => this.backward()}>&lt;</button>
+                    <button onClick={() => this.forward()}>&gt;</button>
+                </div>
             </div>
         );
     }
@@ -31,7 +37,8 @@ export default class Gallery extends Component<GalleryPropType, GalleryState> {
             <div
                 className="gallery-image"
                 style={style}
-                key={index}></div>
+                key={index}>{index}
+            </div>
         )
     }
 
@@ -48,5 +55,20 @@ export default class Gallery extends Component<GalleryPropType, GalleryState> {
 
     getItemsPerPage(): number {
         return this.props.itemsPerPage;
+    }
+
+    forward() {
+        this.moveTo(this.state.position + 1);
+    }
+
+    backward() {
+        this.moveTo(this.state.position - 1);
+    }
+
+    moveTo(nextPosition: number) {
+        const maxValidPosition = this.state.length - this.props.itemsPerPage + 1;
+        nextPosition = (nextPosition + maxValidPosition) % maxValidPosition;
+        console.log(`Next position: ${nextPosition}`)
+        this.setState(Object.assign({}, this.state, {position: nextPosition}))
     }
 }
