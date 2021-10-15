@@ -6,49 +6,53 @@ https://solidifying-thoughts.notion.site/React-Developer-Gallery-Task-2-4-hours-
 
     npm run storybook
 
-# Getting Started with Create React App
+## Given Requirements
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Navigate, Equal Width
 
-## Available Scripts
+*Your Gallery should be able to navigate through a flexible number of equal width items* 
 
-In the project directory, you can run:
+Just one row? Height could be different, see example image ![Pexels Screenshot](./imgs/pexels-com.png)
 
-### `npm start`
+### Different Content
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+*The items should be able to display different kinds of contents. These contents are determined by the Parent Component.*
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+I simply used image URLs now to get started. As the content is defined by parent component, I would switch to a way of injecting html or similar into the gallery. React seems to have `props.chilren` for these things.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Displayed Item Count
 
-### `npm run build`
+*The number of items that fit the screen width changes based on the screen size*
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ If there is a common understanding of 'small' 'medium' 'large', would work with those definitions. For now it is proven to support multiple values (passed via props, so it is visible via storybook testing)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Full Width vs. indent
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*For now the gallery should support two different variants (full width, 60px indent)*
 
-### `npm run eject`
+ Right now takes up 100% of available space. If indent is needed can be achieved via CSS-classes. If 60px is a somewhat standard classes would be available to quickly assign to our gallery component
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Different Sources
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+*The gallery's data will later be provided by different sources (Redux Store, API, ...)*
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+ Probably the largest required refractor for this part. Would achieve by providing a hook for a 'pageChange' (e.g. user clicks forward/backward). The parent component responsible for the input would then simply update the gallery's `props.children`. Also it can take necessary caching actions and decide, if at all we need to be asynchronous.
 
-## Learn More
+ Since the items would be up to the parent component they can be any regular HTML/React-Component and get their data once necessary. For that to work they cannot be too data-intensive as latency might make a bad impression on the user. However we can tackle that by pre-loading out of sight if necessary.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Other Requirements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Shall the gallery 'cycle through'?
+  * If yes, with visible start/end or infinitely in a loop?
+* Automatic cycling every X seconds?
+* Animations?
+
+## Next Steps
+
+1. Check in with requirements again
+2. Check for a finished React library ;P
+3. Get UI/UX draft
+4. Inject the gallery items from a parent component.
+5. 'Inject' ScreenSize to supply `itemPerPage` property
