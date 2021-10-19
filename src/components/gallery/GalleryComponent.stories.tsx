@@ -1,3 +1,4 @@
+import { JsxElement } from 'typescript';
 import { GalleryItem, GalleryPropType } from './Gallery.types';
 import GalleryComponent from './GalleryComponent';
 
@@ -6,9 +7,14 @@ export default {
     title: 'Gallery',
 };
 
+// Not sure what the proper interface would be, so I build my own one for now.
+interface JsxGalleryElement extends Partial<JsxElement> {
+    args?: Partial<GalleryPropType>;
+}
+
 const Template = (args: GalleryPropType) => <GalleryComponent {...args} />
 
-export const Default = Template.bind({});
+export const Default = Template.bind({}) as JsxGalleryElement;
 Default.args = {
     items: [
         createImageGalleryItem(146083),
@@ -20,28 +26,28 @@ Default.args = {
         createImageGalleryItem(1661179),
     ],
     itemsPerPage: 4
-} as GalleryPropType;
+};
 
-export const Empty = Template.bind({});
+export const Empty = Template.bind({}) as JsxGalleryElement;
 Empty.args = Object.assign({}, Default.args, {
-    items: []
-} as GalleryPropType);
+    items: [],
+});
 
-export const OnePerPage = Template.bind({});
+export const OnePerPage = Template.bind({}) as JsxGalleryElement;
 OnePerPage.args = Object.assign({}, Default.args, {
     itemsPerPage: 1
-} as GalleryPropType);
+});
 
-export const OneItemOnePerPage = Template.bind({});
+export const OneItemOnePerPage = Template.bind({}) as JsxGalleryElement;
 OneItemOnePerPage.args = Object.assign({}, Default.args, {
     items: [createImageGalleryItem(146083)],
     itemsPerPage: 1
-} as GalleryPropType);
+});
 
-export const OneItemFourPerPage = Template.bind({});
+export const OneItemFourPerPage = Template.bind({}) as JsxGalleryElement;
 OneItemFourPerPage.args = Object.assign({}, Default.args, {
     items: [createImageGalleryItem(146083)],
-} as GalleryPropType);
+});
 
 function createImageGalleryItem(id: number): GalleryItem {
     return { url: getImageUrl(id) };

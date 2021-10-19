@@ -1,4 +1,4 @@
-import React from 'react';
+import { JsxElement } from 'typescript';
 import { GalleryItem } from '../Gallery.types';
 import GalleryItemComponent from './GalleryItemComponent';
 
@@ -7,6 +7,11 @@ export default {
     title: 'Gallery Item',
 };
 
+// Not sure what the proper interface would be, so I build my own one for now.
+interface JsxGalleryItemElement extends Partial<JsxElement> {
+    args?: Partial<GalleryItem>;
+}
+
 const Template = (args: GalleryItem) => {
     return (<div style={{ height: '500px', width: '500px' }}>
         <GalleryItemComponent {...args} />
@@ -14,7 +19,7 @@ const Template = (args: GalleryItem) => {
     )
 }
 
-export const Default = Template.bind({});
+export const Default = Template.bind({}) as JsxGalleryItemElement;
 Default.args = createImageGalleryItem(146083);
 
 
