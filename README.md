@@ -2,6 +2,10 @@
 
 https://solidifying-thoughts.notion.site/React-Developer-Gallery-Task-2-4-hours-75f5b64d9cb048f48a952abd8c9ce3c0
 
+So far only developed component using storybook.
+
+The main goal was to start building the component for X hours under the condition of NOT producing any waster due to "open" requirement questions.
+
 ## Run
 
     npm run storybook
@@ -38,9 +42,12 @@ I simply used image URLs now to get started. As the content is defined by parent
 
 *The gallery's data will later be provided by different sources (Redux Store, API, ...)*
 
- Probably the largest required refractor for this part. Would achieve by providing a hook for a 'pageChange' (e.g. user clicks forward/backward). The parent component responsible for the input would then simply update the gallery's `props.children`. Also it can take necessary caching actions and decide, if at all we need to be asynchronous.
+If the requirement is to display a list of items from the same template, but with different data, coming from a pageable query we can achieve that well.
 
- Since the items would be up to the parent component they can be any regular HTML/React-Component and get their data once necessary. For that to work they cannot be too data-intensive as latency might make a bad impression on the user. However we can tackle that by pre-loading out of sight if necessary.
+If it must be different templates and different data (sources):
+    Probably the largest required refractor for this part. Would achieve by providing a hook for a 'pageChange' (e.g. user clicks forward/backward). The parent component responsible for the input would then simply update the gallery's `props.children`. Also it can take necessary caching actions and decide, if at all we need to be asynchronous.
+
+    Since the items would be up to the parent component they can be any regular HTML/React-Component and get their data once necessary. For that to work they cannot be too data-intensive as latency might make a bad impression on the user. However we can tackle that by pre-loading out of sight if necessary.
 
 ## Other Requirements
 
@@ -55,4 +62,5 @@ I simply used image URLs now to get started. As the content is defined by parent
 2. Check for a finished React library ;P
 3. Get UI/UX draft
 4. Inject the gallery items from a parent component.
-5. 'Inject' ScreenSize to supply `itemPerPage` property
+5. That enables us to check for a templating possibilty.
+6. 'Inject' ScreenSize to supply `itemPerPage` property

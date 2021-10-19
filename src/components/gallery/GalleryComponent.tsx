@@ -45,14 +45,21 @@ export default class GalleryComponent extends Component<GalleryPropType, Gallery
         return this.props.itemsPerPage;
     }
 
+    // moves 1 step, could of course be switched to move a full page
     forward() {
         this.moveTo(this.state.position + 1);
     }
 
+    // moves 1 step, could of course be switched to move a full page
     backward() {
         this.moveTo(this.state.position - 1);
     }
 
+    /**
+     * Change position. Can violate the gallery bounds in the call as the new position is being covnerted to a valid one.
+     * 
+     * @param nextPosition new position, can be oblivious to the gallery bounds
+     */
     moveTo(nextPosition: number) {
         const maxValidPosition = this.state.length - this.props.itemsPerPage + 1;
         nextPosition = (nextPosition + maxValidPosition) % maxValidPosition;
